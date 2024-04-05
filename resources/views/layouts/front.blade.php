@@ -62,14 +62,14 @@
 
                 <ul class="s-header__nav">
                     <li class="current"><a href="{{ route('home') }}" title="">Home</a></li>
-                    <!-- <li class="has-children">
+                    <li class="has-children">
                         <a href="#0" title="">Categories</a>
                         <ul class="sub-menu">
                             @foreach ($categories as $cat)
                             <li><a href="{{ route('categories.view', $cat->id) }}">{{ $cat->title }}</a></li>
                             @endforeach
                         </ul>
-                    </li> -->
+                    </li>
                     @guest
                     <li>
                         <a href="{{ route('login') }}" title="">Sign In</a>
