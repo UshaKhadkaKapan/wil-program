@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Post, Category};
+use App\Models\{Post, Category, CategoryPost};
 use Illuminate\Http\Request;
 
 
@@ -45,11 +45,23 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        //   dd($request->post());
         if ($request->has('image')) {
             $this->uploadImage($request);
         }
-        $request->user()->posts()->create($request->post());
+
+        $post = $request->post();
+
+        $response =  $request->user()->posts()->create($post);
+
+        $data =  json_decode($response, true);
+
+        $id = $data['id'];
+        $catId = $post['category'];
+        $category = new CategoryPost();
+        $category->post_id = $id;
+        $category->category_id = $catId;
+        $category->save();
 
         return redirect()->route('posts.index')->with('message', 'Post created successfully');
     }

@@ -40,7 +40,12 @@ class PageController extends Controller
 
         $posts = $category->posts()->get();
 
-        $categories = Category::all();
-        return view('front.categories.show', compact('category', 'posts', 'categories'));
+        if ($posts->count() > 0) {
+
+            $categories = Category::all();
+            return view('front.categories.show', compact('category', 'posts', 'categories'));
+        }
+
+        dd('No post available in this Category');
     }
 }

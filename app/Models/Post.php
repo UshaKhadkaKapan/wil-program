@@ -12,18 +12,18 @@ class Post extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'title', 
-        'slug', 
-        'excerpt', 
-        'body',  
-        'featured', 
-        'image', 
+        'title',
+        'slug',
+        'excerpt',
+        'body',
+        'featured',
+        'image',
     ];
 
     public function setTitleAttribute($value)
     {
         $this->attributes['title'] = $value;
-        $this->attributes['slug'] = Str::slug($value);
+        $this->attributes['slug'] = Str::slug($value) . rand(1, 1000);
     }
     public function user()
     {
@@ -40,15 +40,18 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function scopeFeatured($query){
+    public function scopeFeatured($query)
+    {
         return $query->where('featured', true);
     }
 
-    public function previousPost(){
-        return  Post::where('id', '<', $this->id)->orderBy('id','desc')->first();
+    public function previousPost()
+    {
+        return  Post::where('id', '<', $this->id)->orderBy('id', 'desc')->first();
     }
 
-    public function nextPost(){
+    public function nextPost()
+    {
         return Post::where('id', '>', $this->id)->orderBy('id')->first();
     }
 }
