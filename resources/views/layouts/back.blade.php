@@ -162,11 +162,11 @@
     <!-- Summernote -->
     <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
 
-    <!-- AdminLTE App -->
+    <!-- ACS App -->
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
-    <!-- AdminLTE for demo purposes -->
+    <!-- ACS for demo purposes -->
     <script src="{{ asset('dist/js/demo.js') }}"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <!-- ACS dashboard demo (This is only for demo purposes) -->
     {{-- <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script> --}}
     @yield('javascript')
 </body>
